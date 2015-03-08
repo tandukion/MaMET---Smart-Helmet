@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="app_name">MaMET-beta</string>
+    <string name="hello_world">Hello sir :D</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_ep8">activity_mbeta</string>
+
+</resources>

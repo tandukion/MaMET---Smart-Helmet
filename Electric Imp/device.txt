@@ -1,0 +1,95 @@
+//--Global Variables--- 
+// for LED
+led <- hardware.pin2;
+led.configure(DIGITAL_OUT);
+
+// I2C for IMU
+i2c <- hardware.i2c89;
+i2c.configure(CLOCK_SPEED_400_KHZ);
+local address = (0x68<<1);
+
+// unsigned integer to signed integer function
+function un_to_signed(uint) { 
+    local val = (uint);
+    if (val >= 0x8000){
+    return -((65535 - val) + 1)}
+    else {
+    return val;
+    }
+}
+
+// string for testing
+local text_string = "this is string";
+local status ="";
+
+/* 
+// function to turn LED on or off
+function setLed(ledState) {
+  server.log("Set LED: " + ledState);
+  led.write(ledState);
+}
+
+// register a handler for "led" messages from the agent
+//agent.on("led", setLed);
+*/
+
+local pitch=0;
+local pitchAcc=0;
+local P_CompCoeff= 0.98;
+local delta_t = 0.1;
+local RAD_TO_DEG = 57.2957795;
+
+function ComplementaryFilter( ax, ay, az, gy) {
+    local squaresum= (ay*ay) + (az*az);
+    pitch= pitch + ((-gy/32.8)*(delta_t/1000000.0)); 
+    pitchAcc = math.atan(ax/math.sqrt(squaresum))*RAD_TO_DEG;
+    pitch =P_CompCoeff*pitch + (1-P_CompCoeff)*pitchAcc;
+}
+
+function readIMU() {
+    i2c.write(address, "\x6B\x00");
+    local mpu_data = i2c.read(address,"\x3b", 14);
+    local ax = un_to_signed((mpu_data[0]<<8) | mpu_data[1]);
+    local ay = un_to_signed((mpu_data[2]<<8) | mpu_data[3]);
+    local az = un_to_signed((mpu_data[4]<<8) | mpu_data[5]);
+    local gx = un_to_signed((mpu_data[8]<<8) | mpu_data[9]);
+    local gy = un_to_signed((mpu_data[10]<<8) | mpu_data[11]);
+    local gz = un_to_signed((mpu_data[12]<<8) | mpu_data[13]);
+    local temp = mpu_data[7];
+    local tempC = (temp / 340.0) + 36.53;
+    local tempF = tempC * 1.8 + 32;
+    
+
+    ComplementaryFilter(ax,ay,az,gy);
+    server.log(pitch);
+    
+    /*
+    if (ax>=15000)
+        status ="sumbu x vertikal";
+    else if(ay>=15000)
+        status ="sumbu y vertikal";
+    else if(az>=15000)
+        status ="sumbu z vertikal";
+        */
+    if (math.abs(pitch)>70)
+        status = "kecelakaan";
+    else
+        status = "aman";
+    local mpu_values=
+    {
+        ax=ax, ay=ay, az=az, gx=gx, gy=gy, gz=gz,temp=temp, tempC=tempC, tempF=tempF, status=status
+    }
+    // Identifier for the table
+    agent.send("impValues", mpu_values);
+    // Server log for checking
+    //server.log(round(tempF, 1));
+    /*
+    server.log("acc  :"+"\t\t"+ax+"\t"+ay+"\t"+az);
+    server.log("gyro :"+"\t\t"+gx+"\t"+gy+"\t"+gz);
+    server.log(status);
+    server.log("--------------------------------");
+    */
+    imp.wakeup(0.01, readIMU);
+}
+
+readIMU();

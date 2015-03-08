@@ -1,0 +1,35 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+	<TableRow >
+    <TextView
+        android:id="@+id/VoiceCommand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="Hello sir :D"
+        android:textSize="35dp" />
+	</TableRow>
+    <TableRow>
+	<TextView 
+	    android:id="@+id/statusvalue"
+	    android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="status IMU"/>
+	<TextView 
+	    android:id="@+id/myText"
+	    android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="myText"/>
+	
+	</TableRow>
+    <TableRow>
+	<TextView 
+	    android:id="@+id/GPSLocation"
+	    android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""/>
+	</TableRow>
+</TableLayout>

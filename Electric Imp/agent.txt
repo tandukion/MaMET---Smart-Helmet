@@ -1,0 +1,100 @@
+// Log the URLs we need
+//server.log("Turn LED On: " + http.agenturl() + "?led=1");
+//server.log("Turn LED Off: " + http.agenturl() + "?led=0");
+ 
+// Global Variables 
+ax<-"";
+ay<-"";
+az<-"";
+gx<-"";
+gy<-"";
+gz<-"";
+temp<-"";
+tempC<-"";
+tempF<-"";
+status<-"";
+
+// Function Definition
+// respondImpValues is called whenever an hhtp request is received
+// This function will construct JSON table containing our most recently received data
+function respondImpValues(request, response){
+    
+    // Constructing a JSON table from received data
+    local dataTable=
+    {
+        "ax": ""+ax+"",
+        "ay": ""+ay+"",
+        "az": ""+az+"",
+        "gx": ""+gx+"",
+        "gy": ""+gy+"",
+        "gz": ""+gz+"",
+        "temp": ""+temp+"",
+        "tempC": ""+tempC+"",
+        "tempF": ""+tempF+"",
+        "status": ""+status+""
+    }
+    
+    // return standardized JSON string
+    local jvars = http.jsonencode(dataTable);
+    
+    //attach hedaer to our response
+    response.header("Access-Control-Allow-Origin","*");
+    
+    //send out response
+    response.send(200,jvars);
+    
+    server.log("acc  :"+"\t\t"+ax+"\t"+ay+"\t"+az);
+    server.log("gyro :"+"\t\t"+gx+"\t"+gy+"\t"+gz);
+    server.log(status);
+    server.log("--------------------------------");
+}
+ 
+//device.on("impValues") will be called whenever an "impValues" is sent
+device.on("impValues", function(value){
+    ax= value.ax;
+    ay= value.ay;
+    az= value.az;
+    gx= value.gx;
+    gy= value.gy;
+    gz= value.gz;
+    temp=value.temp;
+    tempC=value.tempC;
+    tempF=value.tempF;
+    status=value.status;
+});
+
+http.onrequest(respondImpValues);
+
+/*
+function requestHandler(request, response) {
+  try {
+    // check if the user sent led as a query parameter
+    if ("led" in request.query) {
+      
+      // if they did, and led=1.. set our variable to 1
+      if (request.query.led == "1" || request.query.led == "0") {
+        // convert the led query parameter to an integer
+        local ledState = request.query.led.tointeger();
+        //response.send(200, "OK");
+        if (request.query.led == "1")
+            response.send(200, "LED is turned ON");
+        if (request.query.led == "0")
+            response.send(200, "LED is turned OFF");
+        // send "led" message to device, and send ledState as the data
+        device.send("led", ledState); 
+      }
+      else
+        response.send(200, "The query "+request.query.led.tointeger()+" is not right.\n"+"Put either led=1 or led=0.");
+    }
+    else
+        response.send(200, "The query is not right. Put either led=1 or led=0.");
+    // send a response back saying everything was OK.
+    //response.send(200, "OK");
+  } catch (ex) {
+    response.send(500, "Internal Server Error: " + ex);
+  }
+}
+ 
+// register the HTTP handler
+http.onrequest(requestHandler);
+*/

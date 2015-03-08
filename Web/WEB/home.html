@@ -1,0 +1,178 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+		<link rel="stylesheet" type="text/css" href="css/jajal.css">
+		<script type="text/javascript" src='js/jquery-1.11.2.min.js'></script>
+		<script type="text/javascript" src='js/jq.js'></script>
+		<script type="text/javascript" src='js/script.js'></script>
+		<script type="text/javascript" src='js/bootstrap.min.js'></script>
+		<script type="text/javascript" src='js/bootstrap.js'></script>
+		<script src="hc/js/highcharts.js"></script>
+		<script src="hc/js/exporting.js"></script>
+		<script type="text/javascript">
+			function showhide(){
+			           var div = document.getElementById("newpost");
+			    if (div.style.display !== "none") {
+			        div.style.display = "none";
+			    }
+			    else {
+			        div.style.display = "block";
+			    }
+     		}
+     		$(document).ready(function(){
+		        $(".slidingDiv").hide();
+		        $(".show_hide").show();
+			    $('.show_hide').click(function(){
+			    $(".slidingDiv3").hide();	
+			    $(".boxx").toggleClass("boxx-change");	
+			    $(".slidingDiv").slideToggle();
+			    }); 
+			});
+			$(function() {
+				$(".slidingDiv1").hide();
+				$(".slidingDiv4").hide();
+		        $(".show_hide").show();
+				$("#bt").click(function() {
+				$(".box").toggleClass("box-change");
+				$(".slidingDiv1").slideToggle();
+				$(".slidingDiv4").slideToggle();
+				});
+			});
+			$(function() {
+				$(".slidingDiv3").hide();
+		        $(".show_hide").show();
+				$("#bta").click(function() {
+				$(".slidingDiv").hide();	
+				$(".boxx").toggleClass("boxx-change");
+				$(".slidingDiv3").slideToggle();
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<nav class="navbar navother-color navbdr navbar-fixed-top clmnpad center ">
+		  <div class= "container">
+		  	<div class='navbar-header'>
+		  	<a href="#" class='navbar-brand'>Lambang</a>
+		  	<button class='navbar-toggle' data-toggle = 'collapse' data-target = '.navHeaderCollapse'>
+		  		<span style='color:#FF8533' >-</span>
+		  		<span style='color:#FF8533' >-</span>
+		  		<span style='color:#FF8533' >-</span>
+		  	</button>
+		  </div>
+		  <div class='collapse navbar-collapse navbar-right myfont3'>
+		  	<ul class='nav navbar-nav'>
+		  		<li><a href="#">FB</a></li>
+		  	</ul>
+		  </div>
+		  <div class='collapse navbar-collapse navbar-right navHeaderCollapse myfont3'>
+		  	<ul class='nav navbar-nav'>
+		  		<li><a href="#">Home</a></li>
+		  		<li><a href="../mamet/chart.php">Maps</a></li>
+		  		<li><a href="#">Link</a></li>
+		  	</ul>
+		  </div>
+		 </div>
+		</nav>
+		<div class='jumbotron jmbtsize navother-color'> 
+			<div class="container boxx">
+			  <div class="row">
+			  	<div class='posbg navbar-collapse'>
+			  		<img src="ady/smart-helemte-icon_0000_Layer-1.png" width='620' height='500'>
+			  	</div>
+			    <div class="col-xs-6 col-xs-offset-3 col-md-3 col-md-offset-1 padtop1 myfont boxx-change" align='center'>
+			      <span style='color:#FF8533'>MAMET</span>
+			    </div>
+			  </div>
+		  	</div> 
+		  	<div class="container">  
+			  <div class="row">
+			    <div class="col-xs-6 col-xs-offset-3 col-md-5 col-md-offset-0 myfont1 padbtm" align='center' >
+			      Smart Helmet
+			    </div>
+			  </div>
+			</div>  
+			  <div class='container padbtm1'>
+			  	<div class="row">
+				    <div class="col-xs-4 col-xs-offset-3 col-md-1  myfont3 magleft2" align='center' >
+				    	<img src="ady/smart-helemte-icon_0004_Layer-6.png" width='120'>
+				    </div>
+				    <div class="col-xs-4 col-md-1 myfont3 magleft2" align='center'>
+				    	<a id='bta'>
+				    		<img src="ady/smart-helemte-icon_0002_Layer-4.png" width='120'>
+				    	</a>
+				    </div>
+				    <div class="col-xs-3 col-md-1  magleft2 myfont2" align='center'>
+				    	<a href="#" class='show_hide'>
+				    		<img src="ady/smart-helemte-icon_0003_Layer-3.png" width='120'>
+				    	</a>
+				    </div>
+			    </div>
+			    <div class='row'>
+				    <div id="newpost">
+				    	<div class="col-xs-6 col-md-5 slidingDiv myfont3" align='center' >
+				    		Sebuah helm pintar yang dapat digunakan oleh pengendara sepeda motor. Smart Helmet bekerja dengan mengintegrasikan mikrokontroler dan berbagai macam sensor. Smart Helmet tersambung dengan smartphone android untuk menjalankan fitur-fitur yang akan digunakan
+				    	</div>
+				    	<div class="col-xs-6 col-md-5 slidingDiv3 myfont3" align='center' >
+				    		Sebuah helm pintar yang dapat digunakan oleh pengendara sepeda motor. Smart Helmet bekerja dengan mengintegrasikan mikrokontroler dan berbagai macam sensor. Smart Helmet tersambung dengan smartphone android untuk menjalankan fitur-fitur yang akan digunakan
+				    	</div>	
+				    </div>
+				</div>
+			  </div>
+		</div>
+		<div class='jumbotron other-color padbtm3 '>
+		<div class="container">
+			<div class="row">
+				<div class='col-xs-8 col-xs-push-4 myfont4 padrgt padtop slidingDiv4'>
+					OUR PRODUCTS
+					<div class="col-xs-2 col-xs-push-5 slidingDiv1 " align='center' >
+						<img src="ady/smart-helemte-icon_0008_Layer-9.png" width='70' height='100'>							 
+					</div>
+						<div class="col-xs-2 col-xs-push-5 slidingDiv1 " align='center' >
+					<img src="ady/smart-helemte-icon_0009_Layer-10.png" width='70' height='100'>							 
+					</div>
+					<div class="col-xs-2 col-xs-push-5 slidingDiv1 " align='center' >
+					<img src="ady/smart-helemte-icon_0010_Layer-11.png" width='70' height='100'>							 
+					</div>
+				</div>
+				<div class="col-xs-4 box">
+					<a id='bt'>
+						<img src='ady/smart-helemte-icon_0011_Layer-12.png' width='330' height='360'>
+					</a>
+				</div>
+  			</div>
+		</div>
+		</div>
+		<div class='jumbotron jmbtsize other-color'>
+		<div class='container'>
+			<div class='row'>
+				<div class="col-xs-12 myfont1 padbtm2" align='center' >
+					FITUR							 
+				</div>	
+			</div>
+			<div class='row'>
+				<div class="col-xs-3 col-xs-push-1 magrgt">
+					<img src="ady/smart-helemte-icon_0013_Layer-14.png" width='300' hieght='300'>
+				</div>
+				<div class="col-xs-3 col-xs-push-1" align='center' >
+					<img src="ady/smart-helemte-icon_0014_Layer-15.png" width='250' hieght='250'>						 
+				</div>
+				<div class="col-xs-3 col-xs-push-1" align='center' >
+					<img src="ady/smart-helemte-icon_0015_Layer-16.png" width='250' hieght='250'>							 
+				</div>	
+			</div>
+		</div>
+		</div>
+		<div class='jumbotron jmbtmagbot other-color1'>
+		<div class='container'>
+			<div class='row'>
+				<div class='col-xs-12' align='center'>
+					Smart Helmet Copyright
+				</div>
+			</div>
+		</div>	
+		</div>
+	</body>	
+</html>
